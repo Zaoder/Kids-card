@@ -11,6 +11,8 @@ TERMS = {
  "lion": ["lion"], "elephant": ["African elephant", "elephant"], "monkey": ["chimpanzee"],
  "frog": ["frog"], "owl": ["tawny owl", "owl"], "wolf": ["gray wolf", "wolf"],
 }
+if os.environ.get("ONLY"):
+    TERMS = {os.environ["ONLY"]: os.environ["TERMS"].split("|")}
 CATS = ["Featured_pictures_on_Wikimedia_Commons", "Quality_images"]
 N = 9
 

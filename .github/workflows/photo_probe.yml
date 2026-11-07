@@ -1,5 +1,9 @@
 name: Probe photos
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      only: { required: false, default: "" }
+      terms: { required: false, default: "" }
 permissions:
   contents: write
 jobs:
@@ -9,6 +13,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install -q pillow
       - run: python3 tools/photo_probe.py
+        env:
+          ONLY: ${{ inputs.only }}
+          TERMS: ${{ inputs.terms }}
       - name: Push to probe branch
         run: |
           git config user.name "github-actions"
