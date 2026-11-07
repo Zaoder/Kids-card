@@ -1,0 +1,20 @@
+name: Probe photos
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q pillow
+      - run: python3 tools/photo_probe.py
+      - name: Push to probe branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git checkout --orphan probe
+          git rm -rq --cached .
+          git add probe
+          git commit -qm "photo probe"
+          git push -f origin probe
