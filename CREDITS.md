@@ -18,3 +18,24 @@
 - **frog**: [Single Frog Croak.oga](https://commons.wikimedia.org/wiki/File:Single_Frog_Croak.oga) - MichaeltheFox8621 - CC BY-SA 4.0
 - **owl**: [Strix aluco male.oga](https://commons.wikimedia.org/wiki/File:Strix_aluco_male.oga) - Vianney Bajart - CC BY-SA 4.0
 - **wolf**: [Wolf howls.ogg](https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg) - άγνωστος - Public domain
+
+# Φωτογραφίες ζώων
+
+Όλες από το Wikimedia Commons:
+
+- **dog**: [Samoyed dog two year old female dllu.jpg](https://commons.wikimedia.org/wiki/File:Samoyed_dog_two_year_old_female_dllu.jpg) - Dllu - CC BY-SA 4.0
+- **cat**: [Cat November 2010-1a.jpg](https://commons.wikimedia.org/wiki/File:Cat_November_2010-1a.jpg) - Alvesgaspar - CC BY-SA 3.0
+- **cow**: [Cow (Fleckvieh breed) Oeschinensee Slaunger 2009-07-07.jpg](https://commons.wikimedia.org/wiki/File:Cow_(Fleckvieh_breed)_Oeschinensee_Slaunger_2009-07-07.jpg) - Kim Hansen - CC BY-SA 3.0
+- **sheep**: [A sheep with a couple of lambs in Breidsæterdalen, 2013 June.jpg](https://commons.wikimedia.org/wiki/File:A_sheep_with_a_couple_of_lambs_in_Breids%C3%A6terdalen,_2013_June.jpg) - Ximonic (Simo Räsänen) - CC BY-SA 3.0
+- **goat**: [African dwarf goat baby.JPG](https://commons.wikimedia.org/wiki/File:African_dwarf_goat_baby.JPG) - Korall - CC BY-SA 3.0
+- **horse**: [Domestic horse at Suryachaur and the mountains in the back1.jpg](https://commons.wikimedia.org/wiki/File:Domestic_horse_at_Suryachaur_and_the_mountains_in_the_back1.jpg) - Shadow Ayush - CC BY-SA 4.0
+- **pig**: [Pig farm Vampula 1.jpg](https://commons.wikimedia.org/wiki/File:Pig_farm_Vampula_1.jpg) - kallerna - CC BY-SA 4.0
+- **rooster**: [Feral rooster on Kauaʻi.jpg](https://commons.wikimedia.org/wiki/File:Feral_rooster_on_Kaua%CA%BBi.jpg) - Frank Schulenburg - CC BY-SA 4.0
+- **duck**: [Male mallard duck 2.jpg](https://commons.wikimedia.org/wiki/File:Male_mallard_duck_2.jpg) - Acarpentier - CC BY 3.0
+- **lion**: [Lion (Panthera leo) male 6y.jpg](https://commons.wikimedia.org/wiki/File:Lion_(Panthera_leo)_male_6y.jpg) - Charles J. Sharp - CC BY-SA 4.0
+- **elephant**: [African elephant (Loxodonta africana) 2.jpg](https://commons.wikimedia.org/wiki/File:African_elephant_(Loxodonta_africana)_2.jpg) - Charles J. Sharp - CC BY-SA 4.0
+- **monkey**: [016 Alpha male chimpanzee walking at Kibale forest National Park Photo by Giles Laurent.jpg](https://commons.wikimedia.org/wiki/File:016_Alpha_male_chimpanzee_walking_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg) - Giles Laurent - CC BY-SA 4.0
+- **frog**: [Red-eyed Tree Frog - Litoria chloris edit1.jpg](https://commons.wikimedia.org/wiki/File:Red-eyed_Tree_Frog_-_Litoria_chloris_edit1.jpg) - LiquidGhoul edited by Muhammad - CC BY-SA 3.0
+- **owl**: [Eastern Screech Owl.jpg](https://commons.wikimedia.org/wiki/File:Eastern_Screech_Owl.jpg) - Wolfgang Wander - CC BY-SA 3.0
+- **wolf**: [Front view of a resting Canis lupus ssp.jpg](https://commons.wikimedia.org/wiki/File:Front_view_of_a_resting_Canis_lupus_ssp.jpg) - Gary Kramer - Public domain
+- **chicken**: [Gelbes Sachsenhuhn im Schnee (Henne).jpg](https://commons.wikimedia.org/wiki/File:Gelbes_Sachsenhuhn_im_Schnee_(Henne).jpg) - Pedalito - CC0

@@ -1,0 +1,114 @@
+[
+ {
+  "id": "dog",
+  "file": "Samoyed dog two year old female dllu.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Samoyed_dog_two_year_old_female_dllu.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Dllu"
+ },
+ {
+  "id": "cat",
+  "file": "Cat November 2010-1a.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cat_November_2010-1a.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Alvesgaspar"
+ },
+ {
+  "id": "cow",
+  "file": "Cow (Fleckvieh breed) Oeschinensee Slaunger 2009-07-07.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cow_(Fleckvieh_breed)_Oeschinensee_Slaunger_2009-07-07.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Kim Hansen"
+ },
+ {
+  "id": "sheep",
+  "file": "A sheep with a couple of lambs in Breidsæterdalen, 2013 June.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:A_sheep_with_a_couple_of_lambs_in_Breids%C3%A6terdalen,_2013_June.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Ximonic (Simo Räsänen)"
+ },
+ {
+  "id": "goat",
+  "file": "African dwarf goat baby.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:African_dwarf_goat_baby.JPG",
+  "license": "CC BY-SA 3.0",
+  "artist": "Korall"
+ },
+ {
+  "id": "horse",
+  "file": "Domestic horse at Suryachaur and the mountains in the back1.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Domestic_horse_at_Suryachaur_and_the_mountains_in_the_back1.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Shadow Ayush"
+ },
+ {
+  "id": "pig",
+  "file": "Pig farm Vampula 1.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Pig_farm_Vampula_1.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "kallerna"
+ },
+ {
+  "id": "rooster",
+  "file": "Feral rooster on Kauaʻi.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Feral_rooster_on_Kaua%CA%BBi.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Frank Schulenburg"
+ },
+ {
+  "id": "duck",
+  "file": "Male mallard duck 2.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Male_mallard_duck_2.jpg",
+  "license": "CC BY 3.0",
+  "artist": "Acarpentier"
+ },
+ {
+  "id": "lion",
+  "file": "Lion (Panthera leo) male 6y.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Lion_(Panthera_leo)_male_6y.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Charles J. Sharp"
+ },
+ {
+  "id": "elephant",
+  "file": "African elephant (Loxodonta africana) 2.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:African_elephant_(Loxodonta_africana)_2.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Charles J. Sharp"
+ },
+ {
+  "id": "monkey",
+  "file": "016 Alpha male chimpanzee walking at Kibale forest National Park Photo by Giles Laurent.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:016_Alpha_male_chimpanzee_walking_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Giles Laurent"
+ },
+ {
+  "id": "frog",
+  "file": "Red-eyed Tree Frog - Litoria chloris edit1.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Red-eyed_Tree_Frog_-_Litoria_chloris_edit1.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "LiquidGhoul edited by Muhammad"
+ },
+ {
+  "id": "owl",
+  "file": "Eastern Screech Owl.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Eastern_Screech_Owl.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Wolfgang Wander"
+ },
+ {
+  "id": "wolf",
+  "file": "Front view of a resting Canis lupus ssp.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Front_view_of_a_resting_Canis_lupus_ssp.jpg",
+  "license": "Public domain",
+  "artist": "Gary Kramer"
+ },
+ {
+  "id": "chicken",
+  "file": "Gelbes Sachsenhuhn im Schnee (Henne).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Gelbes_Sachsenhuhn_im_Schnee_(Henne).jpg",
+  "license": "CC0",
+  "artist": "Pedalito"
+ }
+]
