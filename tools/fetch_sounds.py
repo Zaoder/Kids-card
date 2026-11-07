@@ -1,6 +1,6 @@
 # Κατεβάζει τους ήχους των ζώων από το Wikimedia Commons, τους κόβει σε λίγα
 # δευτερόλεπτα και γράφει τα credits (άδειες/δημιουργοί).
-import json, os, re, subprocess, urllib.request, urllib.parse, html
+import json, os, re, subprocess, time, urllib.request, urllib.parse, urllib.error, html
 
 UA = {"User-Agent": "KidsCardBuild/1.0 (https://github.com/Zaoder/Kids-card)"}
 OUT = "app/src/main/assets/sounds"
@@ -24,17 +24,29 @@ SOUNDS = {
     "wolf":     ("Wolf howls.ogg", 5, 1),
 }
 
+def get(url, timeout=120):
+    for i in range(5):
+        try:
+            return urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout).read()
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or i == 4: raise
+            time.sleep(15 * (i + 1))
+
 def api(params):
     params.update(format="json", formatversion="2")
-    url = "https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params)
-    return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60))
+    return json.loads(get("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), 60))
 
 def strip(s):
     return html.unescape(re.sub(r"<[^>]+>", "", s or "")).strip()
 
 os.makedirs(OUT, exist_ok=True)
+CJ = "app/src/main/assets/credits.json"
+old = {c["id"]: c for c in (json.load(open(CJ)) if os.path.exists(CJ) else [])}
 credits, failed = [], []
 for aid, (title, maxlen, reps) in SOUNDS.items():
+    if aid in old and old[aid]["file"] == title and os.path.exists(f"{OUT}/{aid}.ogg"):
+        credits.append(old[aid]); print(f"KEEP {aid}"); continue
+    time.sleep(4)
     try:
         r = api({"action": "query", "titles": "File:" + title, "prop": "imageinfo",
                  "iiprop": "url|extmetadata"})
@@ -42,15 +54,12 @@ for aid, (title, maxlen, reps) in SOUNDS.items():
         ii = p["imageinfo"][0]
         em = ii.get("extmetadata", {})
         src = f"/tmp/{aid}.src"
-        with urllib.request.urlopen(urllib.request.Request(ii["url"], headers=UA), timeout=120) as f, open(src, "wb") as o:
-            o.write(f.read())
+        open(src, "wb").write(get(ii["url"]))
         # Αφαίρεση αρχικής σιωπής, κόψιμο, σβήσιμο στο τέλος, κανονικοποίηση έντασης
         fade_st = max(0.1, maxlen - 0.4)
         af = (f"silenceremove=start_periods=1:start_threshold=-40dB:start_silence=0.05,"
               f"atrim=0:{maxlen},asetpts=N/SR/TB,afade=t=out:st={fade_st}:d=0.4,"
               f"loudnorm=I=-16:TP=-1.5:LRA=11")
-        if reps > 1:
-            af = f"aloop=loop={reps-1}:size=2e9," + af if False else af
         cmd = ["ffmpeg", "-y", "-loglevel", "error"]
         if reps > 1:
             cmd += ["-stream_loop", str(reps - 1)]
