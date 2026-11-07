@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- φόντο -->
+    <path android:fillColor="#FFB86B" android:pathData="M0,0h108v108h-108z" />
+    <!-- πατουσάκι -->
+    <path android:fillColor="#FFFFFF" android:pathData="M54,52c-11,0 -20,9 -20,18c0,7 6,10 12,9c3,0 5,-2 8,-2s5,2 8,2c6,1 12,-2 12,-9c0,-9 -9,-18 -20,-18z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M30,50a7,9 -20,1 0,14 0a7,9 -20,1 0,-14 0z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M64,50a7,9 20,1 0,14 0a7,9 20,1 0,-14 0z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M40,34a7,9 -10,1 0,14 0a7,9 -10,1 0,-14 0z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M54,34a7,9 10,1 0,14 0a7,9 10,1 0,-14 0z" />
+</vector>
