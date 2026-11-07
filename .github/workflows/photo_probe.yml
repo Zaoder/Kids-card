@@ -4,6 +4,7 @@ on:
     inputs:
       only: { required: false, default: "" }
       terms: { required: false, default: "" }
+      cats: { required: false, default: "" }
 permissions:
   contents: write
 jobs:
@@ -16,6 +17,7 @@ jobs:
         env:
           ONLY: ${{ inputs.only }}
           TERMS: ${{ inputs.terms }}
+          CATS: ${{ inputs.cats }}
       - name: Push to probe branch
         run: |
           git config user.name "github-actions"

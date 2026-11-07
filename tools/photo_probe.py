@@ -14,6 +14,8 @@ TERMS = {
 if os.environ.get("ONLY"):
     TERMS = {os.environ["ONLY"]: os.environ["TERMS"].split("|")}
 CATS = ["Featured_pictures_on_Wikimedia_Commons", "Quality_images"]
+if os.environ.get("CATS"):
+    CATS = os.environ["CATS"].split("|")
 N = 9
 
 def get(url):
@@ -36,7 +38,7 @@ for aid, terms in TERMS.items():
         for t in terms:
             if len(cands) >= N: break
             r = api({"action": "query", "generator": "search", "gsrnamespace": "6", "gsrlimit": "12",
-                     "gsrsearch": f'intitle:"{t}" incategory:{cat} filetype:bitmap',
+                     "gsrsearch": (f'intitle:"{t}" ' if t != "*" else "") + f'incategory:{cat} filetype:bitmap',
                      "prop": "imageinfo", "iiprop": "url|size|extmetadata", "iiurlwidth": "420"})
             for p in (r.get("query") or {}).get("pages", []):
                 ii = (p.get("imageinfo") or [{}])[0]
