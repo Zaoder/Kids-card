@@ -15,3 +15,6 @@
 - **lion**: [Lion raring-sound1TamilNadu178.ogg](https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg) - த*உழவன் - Public domain
 - **elephant**: [Elephant voice - trumpeting.ogg](https://commons.wikimedia.org/wiki/File:Elephant_voice_-_trumpeting.ogg) - தகவலுழவன் - CC0
 - **monkey**: [Pant-hoot call made by a male chimpanzee.ogg](https://commons.wikimedia.org/wiki/File:Pant-hoot_call_made_by_a_male_chimpanzee.ogg) - Pawel Fedurek et al. - CC BY 4.0
+- **frog**: [Single Frog Croak.oga](https://commons.wikimedia.org/wiki/File:Single_Frog_Croak.oga) - MichaeltheFox8621 - CC BY-SA 4.0
+- **owl**: [Strix aluco male.oga](https://commons.wikimedia.org/wiki/File:Strix_aluco_male.oga) - Vianney Bajart - CC BY-SA 4.0
+- **wolf**: [Wolf howls.ogg](https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg) - άγνωστος - Public domain

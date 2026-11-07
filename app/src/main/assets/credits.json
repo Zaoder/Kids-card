@@ -89,5 +89,26 @@
   "page": "https://commons.wikimedia.org/wiki/File:Pant-hoot_call_made_by_a_male_chimpanzee.ogg",
   "license": "CC BY 4.0",
   "artist": "Pawel Fedurek et al."
+ },
+ {
+  "id": "frog",
+  "file": "Single Frog Croak.oga",
+  "page": "https://commons.wikimedia.org/wiki/File:Single_Frog_Croak.oga",
+  "license": "CC BY-SA 4.0",
+  "artist": "MichaeltheFox8621"
+ },
+ {
+  "id": "owl",
+  "file": "Strix aluco male.oga",
+  "page": "https://commons.wikimedia.org/wiki/File:Strix_aluco_male.oga",
+  "license": "CC BY-SA 4.0",
+  "artist": "Vianney Bajart"
+ },
+ {
+  "id": "wolf",
+  "file": "Wolf howls.ogg",
+  "page": "https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg",
+  "license": "Public domain",
+  "artist": ""
  }
 ]
