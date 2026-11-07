@@ -20,11 +20,12 @@ for animal, qs in Q.items():
     seen = {}
     for q in qs:
         try:
-            r = api({"action": "query", "generator": "search", "gsrsearch": q + " filemime:audio",
+            r = api({"action": "query", "generator": "search", "gsrsearch": q + " filetype:audio",
                      "gsrnamespace": "6", "gsrlimit": "10", "prop": "imageinfo",
                      "iiprop": "url|mime|size|extmetadata|metadata"})
         except Exception as e:
             print("ERR", animal, q, e); continue
+        print("  q:", q, "hits:", len((r.get("query") or {}).get("pages", [])), str(r)[:200] if "query" not in r else "")
         for p in (r.get("query") or {}).get("pages", []):
             ii = (p.get("imageinfo") or [{}])[0]
             md = {m["name"]: m.get("value") for m in (ii.get("metadata") or []) if isinstance(m, dict)}
