@@ -1,6 +1,8 @@
 package gr.teo.kidscard;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.AudioAttributes;
@@ -16,6 +18,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
@@ -26,9 +32,12 @@ public class MainActivity extends Activity {
     private TextToSpeech tts;
     private boolean ttsReady = false;
     private MediaPlayer player;
-    private int seq = 0;          // κάθε νέο πάτημα ακυρώνει το προηγούμενο
-    private String pendingId;     // ποιο ζώο περιμένει τον ήχο του μετά το όνομα
-    private String pendingFx;
+
+    // Τρέχουσα σειρά βημάτων (φωνή / ήχος ζώου). Κάθε νέα σειρά ακυρώνει την προηγούμενη.
+    private int gen = 0;
+    private String token = null;
+    private JSONArray steps = null;
+    private int idx = 0;
 
     private final AudioAttributes attrs = new AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
@@ -67,23 +76,64 @@ public class MainActivity extends Activity {
             tts.setAudioAttributes(attrs);
             tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                 @Override public void onStart(String id) { }
-                @Override public void onDone(String id) { runOnUiThread(() -> afterName(id)); }
-                @Override public void onError(String id) { runOnUiThread(() -> afterName(id)); }
+                @Override public void onDone(String id) { runOnUiThread(() -> stepDone(id)); }
+                @Override public void onError(String id) { runOnUiThread(() -> stepDone(id)); }
             });
         });
     }
 
-    /** Τελείωσε το όνομα: παίζει ο ήχος του ζώου. */
-    private void afterName(String uttId) {
-        if (!String.valueOf(seq).equals(uttId) || pendingId == null) return;
-        String id = pendingId, fx = pendingFx;
-        pendingId = null;
-        web.postDelayed(() -> {
-            if (String.valueOf(seq).equals(uttId)) playSound(id, fx, seq);
-        }, 150);
+    private String uttId(int g, int i) { return g + "_" + i; }
+
+    /** Τελείωσε ένα βήμα: συνεχίζει στο επόμενο μετά από μικρή παύση. */
+    private void stepDone(String id) {
+        if (!uttId(gen, idx).equals(id)) return;
+        final int g = gen;
+        web.postDelayed(() -> { if (g == gen) { idx++; nextStep(); } }, 150);
+    }
+
+    private void nextStep() {
+        if (steps == null) return;
+        if (idx >= steps.length()) {
+            String t = token;
+            steps = null;
+            web.evaluateJavascript("window.onPlayDone&&window.onPlayDone('" + t + "')", null);
+            return;
+        }
+        JSONObject st = steps.optJSONObject(idx);
+        String id = uttId(gen, idx);
+        if (st == null) { stepDone(id); return; }
+        if (st.has("say")) {
+            if (ttsReady) tts.speak(st.optString("say"), TextToSpeech.QUEUE_FLUSH, null, id);
+            else stepDone(id);
+        } else if (st.has("snd")) {
+            playSound(st.optString("snd"), st.optString("fx", ""), id);
+        } else {
+            stepDone(id);
+        }
+    }
+
+    private void playSound(String animal, String fx, String id) {
+        try {
+            AssetFileDescriptor afd = getAssets().openFd("sounds/" + animal + ".ogg");
+            MediaPlayer mp = new MediaPlayer();
+            mp.setAudioAttributes(attrs);
+            mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            mp.setOnCompletionListener(m -> stepDone(id));
+            mp.setOnErrorListener((m, w, e) -> { stepDone(id); return true; });
+            mp.prepare();
+            player = mp;
+            mp.start();
+        } catch (Exception e) {
+            // Αν λείπει ο ήχος, η φωνή λέει το «γαβ γαβ»
+            if (ttsReady && !fx.isEmpty()) tts.speak(fx, TextToSpeech.QUEUE_FLUSH, null, id);
+            else stepDone(id);
+        }
     }
 
     private void stopAll() {
+        gen++;
+        steps = null;
         if (tts != null) tts.stop();
         if (player != null) {
             try { player.stop(); } catch (Exception ignored) { }
@@ -92,55 +142,42 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void playSound(String id, String fx, int mySeq) {
-        try {
-            AssetFileDescriptor afd = getAssets().openFd("sounds/" + id + ".ogg");
-            MediaPlayer mp = new MediaPlayer();
-            mp.setAudioAttributes(attrs);
-            mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-            mp.setOnCompletionListener(m -> { if (mySeq == seq) done(id); });
-            mp.setOnErrorListener((m, w, e) -> { if (mySeq == seq) done(id); return true; });
-            mp.prepare();
-            player = mp;
-            mp.start();
-        } catch (Exception e) {
-            // Αν λείπει ο ήχος, η φωνή λέει το «γαβ γαβ»
-            if (ttsReady && fx != null && !fx.isEmpty()) {
-                pendingId = null;
-                tts.speak(fx, TextToSpeech.QUEUE_FLUSH, null, "fx" + mySeq);
-                web.postDelayed(() -> { if (mySeq == seq) done(id); }, 1500);
-            } else {
-                done(id);
-            }
-        }
-    }
-
-    private void done(String id) {
-        web.evaluateJavascript("window.onPlayDone&&window.onPlayDone('" + id + "')", null);
+    private SharedPreferences prefs() {
+        return getSharedPreferences("kids", Context.MODE_PRIVATE);
     }
 
     public class Bridge {
         @JavascriptInterface
-        public void play(String id, String say, String fx) {
+        public void run(String tok, String json) {
             runOnUiThread(() -> {
-                seq++;
                 stopAll();
-                String uttId = String.valueOf(seq);
-                if (ttsReady) {
-                    pendingId = id;
-                    pendingFx = fx;
-                    tts.speak(say, TextToSpeech.QUEUE_FLUSH, null, uttId);
-                } else {
-                    playSound(id, fx, seq);
-                }
+                try { steps = new JSONArray(json); } catch (Exception e) { steps = new JSONArray(); }
+                token = tok;
+                idx = 0;
+                nextStep();
             });
         }
 
         @JavascriptInterface
-        public String credits() {
-            try (InputStream in = getAssets().open("credits.json")) {
-                java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        public void stop() {
+            runOnUiThread(MainActivity.this::stopAll);
+        }
+
+        @JavascriptInterface
+        public String getPref(String key) {
+            return prefs().getString(key, "");
+        }
+
+        @JavascriptInterface
+        public void setPref(String key, String value) {
+            prefs().edit().putString(key, value).apply();
+        }
+
+        @JavascriptInterface
+        public String asset(String name) {
+            if (name.contains("..")) return "[]";
+            try (InputStream in = getAssets().open(name)) {
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
                 byte[] buf = new byte[8192];
                 int n;
                 while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
@@ -174,7 +211,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        seq++;
         stopAll();
     }
 
